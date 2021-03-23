@@ -1,0 +1,48 @@
+<head>
+    <title>Lab 7 - Walking Guy</title> 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row" style="display: flex; align-items: center; justify-content: center;">
+            
+                <button class="btn btn-lg btn-primary" onclick="startWalking()" >Start</button>
+        </div>
+    </div>
+    <div id="guy-container" style="position:absolute;">
+        <img src="lab9-guy-walking.gif" id="walking-guy" style="display:none;"/>
+    </div>
+    
+    <script>
+        function startWalking(){
+            //Fade in 1 second.
+            var walkingguy = $("#guy-container");
+            var guyimage = $("#walking-guy");
+            var width =  $(window).width();
+            var calcleft = width - 400;
+            var calstring = calcleft + "px";
+            console.log(calcleft);
+            guyimage.fadeIn(1000);
+            //Animate to the right side of the window in 3 seconds based on window width
+            walkingguy.animate({
+                left: calstring
+            }, 3000, function(){
+                //Flip image on success callback
+                guyimage.css("-webkit-transform", "scaleX(-1)");
+                guyimage.css("scaleX(-1)", "scaleX(-1)");
+            });
+            
+            
+            //Animate to the left side of the window in 3 seconds based on window width
+            walkingguy.animate({
+                left: 0
+            }, 3000);
+            //Fade image in 1 second
+            walkingguy.fadeOut(1000);
+        }
+        guyimage.css("-webkit-transform", "scaleX(-1)");
+            guyimage.css("scaleX(-1)", "scaleX(-1)");
+    </script>
+</body>
